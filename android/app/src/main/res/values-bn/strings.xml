@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">F Spy</string>
+    <string name="app_full_title">F Spy - পারিবারিক সুরক্ষা ও ডিভাইস ব্যবস্থাপনা</string>
+    <string name="consent_disclosure_title">পারিবারিক সুরক্ষায় শতভাগ স্বচ্ছতা</string>
+    <string name="consent_disclosure_body">এফ স্পাই পিতা-মাতা ও পরিবারের অভিভাবকদের সুরক্ষামূলক নির্দেশনার জন্য তৈরি। আপনার ফোনের লোকেশন, ব্যাটারি অবস্থা এবং অ্যাপ ব্যবহারের সময় আপনার অভিভাবক দেখতে পাবেন। স্ক্রিন শেয়ারিং প্রতি সেশনে আপনার সক্রিয় অনুমোদন ছাড়া শুরু হবে না।</string>
+    <string name="installed_apps_consent_title">ইনস্টলকৃত অ্যাপ্লিকেশনের সম্মতি</string>
+    <string name="installed_apps_consent_body">ক্ষতিকর অ্যাপ থেকে সুরক্ষার জন্য আপনার অভিভাবককে ইনস্টল করা অ্যাপের নাম ও সংস্করণ দেখার অনুমতি দিন। ব্যক্তিগত কোনো বার্তা, মেসেজ বা পাসওয়ার্ড কখনোই সংগ্রহ করা হয় না।</string>
+    <string name="location_service_active">এফ স্পাই লোকেশন সুরক্ষা সক্রিয় রয়েছে</string>
+    <string name="screen_sharing_active">আপনার অভিভাবকের সাথে স্ক্রিন শেয়ার করা হচ্ছে</string>
+    <string name="stop_sharing">শেয়ারিং বন্ধ করুন</string>
+    <string name="generate_pairing_code">পেয়ারিং কোড তৈরি করুন</string>
+    <string name="device_paired_success">ডিভাইস সফলভাবে সংযুক্ত হয়েছে</string>
+    <string name="revoke_permission">অনুমতি বাতিল করুন</string>
+    <string name="battery_status">ব্যাটারির অবস্থা</string>
+    <string name="network_status">নেটওয়ার্ক সংযোগ</string>
+    <string name="storage_status">খালি মেমরি</string>
+</resources>

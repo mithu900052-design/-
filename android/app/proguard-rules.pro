@@ -1,0 +1,3 @@
+-keep class com.fspy.monitor.** { *; }
+-dontwarn org.webrtc.**
+-dontwarn com.google.firebase.**

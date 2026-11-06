@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">F Spy</string>
+    <string name="app_full_title">F Spy - Family Safety &amp; Device Management</string>
+    <string name="consent_disclosure_title">Family Protection Transparency</string>
+    <string name="consent_disclosure_body">F Spy is designed for parental guidance and family safety. Your device will share location, battery status, and app usage with your designated family guardian. Screen sharing requires active approval per session.</string>
+    <string name="installed_apps_consent_title">Installed Apps Disclosure</string>
+    <string name="installed_apps_consent_body">Grant permission for your family administrator to view installed application names and version numbers to help protect against harmful apps. Private app data, passwords, or chats are never accessed.</string>
+    <string name="location_service_active">F Spy Location Protection is Active</string>
+    <string name="screen_sharing_active">Screen is currently being shared with your Family Guardian</string>
+    <string name="stop_sharing">Stop Sharing</string>
+    <string name="generate_pairing_code">Generate Pairing Code</string>
+    <string name="device_paired_success">Device Successfully Paired</string>
+    <string name="revoke_permission">Revoke Access</string>
+    <string name="battery_status">Battery Status</string>
+    <string name="network_status">Network Status</string>
+    <string name="storage_status">Storage Free Space</string>
+</resources>

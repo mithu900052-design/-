@@ -1,0 +1,87 @@
+{
+  "$schema": "https://firebase.google.com/schemas/firestore-blueprint.json",
+  "collections": [
+    {
+      "name": "administrators",
+      "description": "Registered admin accounts managing family devices",
+      "fields": {
+        "email": { "type": "string" },
+        "name": { "type": "string" },
+        "role": { "type": "string", "enum": ["Owner", "Guardian", "Viewer"] },
+        "twoFactorEnabled": { "type": "boolean" },
+        "lastLogin": { "type": "timestamp" }
+      }
+    },
+    {
+      "name": "devices",
+      "description": "Android companion devices registered to administrators",
+      "fields": {
+        "name": { "type": "string" },
+        "model": { "type": "string" },
+        "manufacturer": { "type": "string" },
+        "androidVersion": { "type": "string" },
+        "androidSdk": { "type": "number" },
+        "status": { "type": "string", "enum": ["online", "offline", "idle"] },
+        "battery": { "type": "map" },
+        "network": { "type": "map" },
+        "storage": { "type": "map" },
+        "permissions": { "type": "map" },
+        "installedAppsConsent": { "type": "boolean" },
+        "screenSharingConsentGranted": { "type": "boolean" },
+        "pairedWithAdminId": { "type": "string" },
+        "assignedFamilyMember": { "type": "string" },
+        "lastSync": { "type": "timestamp" }
+      }
+    },
+    {
+      "name": "location_records",
+      "description": "GPS breadcrumb records with latitude, longitude, speed and accuracy",
+      "fields": {
+        "deviceId": { "type": "string" },
+        "latitude": { "type": "number" },
+        "longitude": { "type": "number" },
+        "accuracy": { "type": "number" },
+        "speed": { "type": "number" },
+        "timestamp": { "type": "timestamp" },
+        "address": { "type": "string" }
+      }
+    },
+    {
+      "name": "usage_statistics",
+      "description": "Aggregated app usage duration and launch frequency from Android UsageStatsManager",
+      "fields": {
+        "deviceId": { "type": "string" },
+        "packageName": { "type": "string" },
+        "appName": { "type": "string" },
+        "dailyMinutes": { "type": "number" },
+        "weeklyMinutes": { "type": "number" },
+        "lastUsed": { "type": "string" },
+        "launchCount": { "type": "number" },
+        "category": { "type": "string" }
+      }
+    },
+    {
+      "name": "pairing_requests",
+      "description": "Temporary 6-digit one-time pairing codes for secure device connection",
+      "fields": {
+        "code": { "type": "string" },
+        "deviceId": { "type": "string" },
+        "deviceName": { "type": "string" },
+        "createdAt": { "type": "timestamp" },
+        "expiresAt": { "type": "timestamp" },
+        "status": { "type": "string", "enum": ["pending", "approved", "rejected", "expired"] }
+      }
+    },
+    {
+      "name": "subscriptions",
+      "description": "Family subscription tiers and device allowances",
+      "fields": {
+        "adminId": { "type": "string" },
+        "planId": { "type": "string", "enum": ["free", "basic", "premium", "pro"] },
+        "status": { "type": "string" },
+        "renewalDate": { "type": "timestamp" },
+        "maxDevices": { "type": "number" }
+      }
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && exists(/databases/$(database)/documents/administrators/$(request.auth.uid));
+    }
+
+    function isDeviceOwner(deviceId) {
+      return isAuthenticated() && (
+        resource.data.pairedWithAdminId == request.auth.uid ||
+        request.auth.uid == deviceId
+      );
+    }
+
+    // Administrators collection
+    match /administrators/{adminId} {
+      allow read, write: if isAuthenticated() && request.auth.uid == adminId;
+    }
+
+    // Users and Family Members
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && (request.auth.uid == userId || isAdmin());
+    }
+
+    // Devices collection
+    match /devices/{deviceId} {
+      // Admins can read devices they own/paired; devices can update their own telemetry
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated();
+      allow update: if isAuthenticated() && (
+        resource.data.pairedWithAdminId == request.auth.uid ||
+        request.resource.data.pairedWithAdminId == request.auth.uid ||
+        request.auth.uid == deviceId
+      );
+      allow delete: if isAdmin() && resource.data.pairedWithAdminId == request.auth.uid;
+    }
+
+    // Device Permissions (Explicit Consent Records)
+    match /device_permissions/{deviceId} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && (
+        request.auth.uid == deviceId ||
+        resource.data.pairedWithAdminId == request.auth.uid
+      );
+    }
+
+    // Location records
+    match /location_records/{recordId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated();
+    }
+
+    // App Usage statistics
+    match /usage_statistics/{statId} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated();
+    }
+
+    // Installed applications list (Only readable if explicit consent is true)
+    match /devices/{deviceId}/installed_apps/{appId} {
+      allow read: if isAuthenticated() && get(/databases/$(database)/documents/devices/$(deviceId)).data.installedAppsConsent == true;
+      allow write: if isAuthenticated() && request.auth.uid == deviceId;
+    }
+
+    // Pairing requests
+    match /pairing_requests/{code} {
+      allow read, write: if isAuthenticated();
+    }
+
+    // Notifications
+    match /notifications/{notifId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    // Subscriptions
+    match /subscriptions/{subId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+  }
+}

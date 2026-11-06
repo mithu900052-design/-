@@ -1,0 +1,11 @@
+{
+  "name": "Remix F Spy - Family Safety \u0026 Device Management",
+  "description": "Production-grade family safety, parental guidance, and Android device management platform with real-time location tracking, battery telemetry, screen sharing authorization, app analytics, and multi-language support (English \u0026 Bengali).",
+  "requestFramePermissions": [
+    "geolocation",
+    "display-capture"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
